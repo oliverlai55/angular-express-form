@@ -13,7 +13,14 @@ router.get('/', function(req, res, next) {
 
 router.post('/search', function(req, res, next){
 	var searchTerms = ['peter','stuart','stephen','griffin','oliver','freddy'];
-	req.body
-	res.json(searchTerms);
+	var keywords = req.body.data;
+
+	var matches = "";
+	for(i=0; i<searchTerms.length; i++){
+		if(searchTerms[i].indexOf(keywords) > -1){
+			matches += searchTerms[i] + ',';
+		}
+	}
+	res.json(matches);
 });
 module.exports = router;
